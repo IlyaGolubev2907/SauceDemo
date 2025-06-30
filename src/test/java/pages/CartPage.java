@@ -15,7 +15,7 @@ public class CartPage extends BasePage {
     public CartPage(WebDriver driver) {
         super(driver);
     }
-    //Проверяем что на странице корзины
+    //Проверяем что нахрдимся на странице корзины
     public boolean isPageProducts() {
         return driver.findElement(TITLE).isDisplayed();
     }
@@ -27,6 +27,7 @@ public class CartPage extends BasePage {
     public void clickRemoveFromCartByIndex(int index) {
         getRemoveButtons().get(index).click();
     }
+    //Проверяем что корзина пустая
     public boolean isCartEmpty() {
         return driver.findElements(CART_ITEMS).isEmpty();
     }

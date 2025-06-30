@@ -7,6 +7,7 @@ import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class CartTest extends BaseTest {
+    //Проверка что корзина не пустая
     @Test
     public void cartIsNotEmpty() {
         loginPage.open();

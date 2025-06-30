@@ -12,14 +12,14 @@ public class ProductTests extends BaseTest{
         //Логин
         loginPage.open();
         loginPage.auth("standard_user", "secret_sauce");
-        //Проверка что в каталоге
+        //Проверка что на странице каталога
         assertTrue(productsPage.isPageProducts());
         //Получаем список товаров
         productsPage.getItems();
         //Добавляем товары в корзину
         productsPage.clickAddToCartByIndex(0);
         productsPage.clickAddToCartByIndex(2);
-        //Проверяем что кнопка add to cart поменялась на emo
+        //Проверяем что кнопка add to cart поменялась на remove
         assertTrue(productsPage.isRemoveButtonDisplayed());
     }
     //Удаление товара из корзины
