@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,46 +19,46 @@ public class ProductsPage extends BasePage {
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
-
+    @Step("Открытие страницы каталога")
     public void open() {
         driver.get(BASE_URL + "inventory.html");
     }
 
-    //Проверка что открыта страница каталога
+    @Step("Проверяем, что находимся на станице каталога")
     public boolean isPageProducts() {
         return driver.findElement(TITLE).isDisplayed();
     }
 
-    //Получение списка товаров
+    @Step("Получение списка товаров из каталога")
     public List<WebElement> getItems() {
         return driver.findElements(ADD_ITEM);
     }
 
-    //Получение кнопок remove
+    @Step("Получение количества добавленных товаров")
     public List<WebElement> getRemoveButtons() {
         return driver.findElements(REMOVE_ITEM);
     }
 
-    //Нажатие add to cart по индексу товара
+    @Step("Добавление товара в корзину")
     public void clickAddToCartByIndex(int index) {
         getItems().get(index).click();
     }
 
-    //Проверка что после нажатия add to cart кнопка меняется на remove
+    @Step("Проверяем, что отображается кнопка remove, после добавление товара в корзину")
     public boolean isRemoveButtonDisplayed() {
         return driver.findElement(REMOVE_ITEM).isDisplayed();
     }
 
-    //Клик по кнопке remove
+    @Step("Нажатие на кнопку remove")
     public void clickRemoveFromCartByIndex(int index) {
         getRemoveButtons().get(index).click();
     }
 
-    //Отображение кнопки корзины
+    @Step("Проверяем, что отображается кнопка корзины")
     public boolean isCartButtonDisplayed() {
         return driver.findElement(CART_BUTTON).isDisplayed();
     }
-    //Клик по иконке корзины
+    @Step("Нажатие на кнопку корзины")
     public void clickCartButton() {
         driver.findElement(CART_BUTTON).click();
     }

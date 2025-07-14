@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,22 +13,23 @@ public class CartPage extends BasePage {
     private final By REMOVE_BUTTON = By.className("btn_secondary");
     private final By CART_ITEMS = By.cssSelector("div.cart_item[data-test='inventory-item']");
 
+
     public CartPage(WebDriver driver) {
         super(driver);
     }
-    //Проверяем что нахрдимся на странице корзины
-    public boolean isPageProducts() {
+    @Step("Проверяем, что находимся на станице корзины")
+    public boolean isPageCart() {
         return driver.findElement(TITLE).isDisplayed();
     }
-    //Получаем кол-во кнопок remove на странице
+    @Step("Получение кнопок remove на странице")
     public List<WebElement> getRemoveButtons() {
         return driver.findElements(REMOVE_BUTTON);
     }
-    //Кликаем кнопку remove по индесу для удаления конкретного товара
+    @Step("Удаление товара из корзины")
     public void clickRemoveFromCartByIndex(int index) {
         getRemoveButtons().get(index).click();
     }
-    //Проверяем что корзина пустая
+    @Step("Проверяем, что корзина пустая")
     public boolean isCartEmpty() {
         return driver.findElements(CART_ITEMS).isEmpty();
     }

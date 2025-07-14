@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -10,6 +11,15 @@ public class LoginTest extends BaseTest{
 
     @Test (priority = 2, description = "Проверка входа в систему без пароля", invocationCount = 3, testName = "Вход в систему без пароля",
             groups = {"Smoke"}, dependsOnMethods = {"checkLogin"})
+    @Severity(SeverityLevel.NORMAL)
+    @Owner("Ilya Golubev")
+    @Link("https://saucedemo.com")
+    @Epic("Login Page")
+    @Feature("Login")
+    @Story("Login without password")
+    @TmsLink("ITM-4")
+    @Issue("ITM-4-1")
+    @Description("Проверка недоступности логина без ввода валидного пароля")
     public void checkLoginWithoutPassword() {
         loginPage.open();
         loginPage.auth("standard-user", "");
@@ -29,7 +39,7 @@ public class LoginTest extends BaseTest{
     @DataProvider(name = "LoginData")
     public Object[][] loginData() {
         return new Object[][] {
-                {"standard_user", "", "Epic sadface: Password is required"},
+                {"standard_user", "", "Epic sadface: Password is require"},
                 {"", "secret_sauce", "Epic sadface: Username is required"},
                 {"test", "test", "Epic sadface: Username and password do not match any user in this service"}
         };
