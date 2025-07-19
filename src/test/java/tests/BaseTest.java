@@ -4,6 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITest;
+import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import pages.CartPage;
@@ -12,6 +15,8 @@ import pages.ProductsPage;
 
 import java.time.Duration;
 import java.util.HashMap;
+
+import static tests.AllureUtils.takeScreenshot;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -24,7 +29,7 @@ public class BaseTest {
 
 @Parameters({"browser"})
 @BeforeMethod (alwaysRun = true)
-public void setup(@Optional("chrome") String browser) {
+public void setup(@Optional("chrome") String browser, ITestContext ITestContext) {
     ChromeOptions options = new ChromeOptions();
     HashMap<String, Object> chromePrefs = new HashMap<>();
     chromePrefs.put("credentials_enable_service", false);
@@ -40,6 +45,8 @@ public void setup(@Optional("chrome") String browser) {
         driver = new FirefoxDriver();
     }
 
+    ITestContext.setAttribute("driver", driver);
+
     softAssert = new SoftAssert();
 
     loginPage = new LoginPage(driver);
@@ -47,7 +54,10 @@ public void setup(@Optional("chrome") String browser) {
     cartPage = new CartPage(driver);
 }
 @AfterMethod(alwaysRun = true)
-public void tearDown() {
+public void tearDown(ITestResult result) {
+    if (ITestResult.FAILURE == result.getStatus()){
+        takeScreenshot(driver);
+    }
     driver.quit();
     }
 }
