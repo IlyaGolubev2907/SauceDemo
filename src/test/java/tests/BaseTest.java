@@ -14,8 +14,6 @@ import pages.ProductsPage;
 
 import java.util.HashMap;
 
-import static tests.AllureUtils.takeScreenshot;
-
 @Listeners(TestListener.class)
 public class BaseTest {
 
