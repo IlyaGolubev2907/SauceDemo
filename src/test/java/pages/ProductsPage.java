@@ -8,8 +8,6 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static tests.AllureUtils.takeScreenshot;
-
 public class ProductsPage extends BasePage {
 
     private final By TITLE = By.xpath("//span[contains(@class, 'title') and contains(text(), 'Products')]");
