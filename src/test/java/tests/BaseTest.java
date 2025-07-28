@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.ITest;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -13,7 +12,6 @@ import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 
-import java.time.Duration;
 import java.util.HashMap;
 
 import static tests.AllureUtils.takeScreenshot;
@@ -57,7 +55,7 @@ public void setup(@Optional("chrome") String browser, ITestContext ITestContext)
 @AfterMethod(alwaysRun = true)
 public void tearDown(ITestResult result) {
     if (ITestResult.FAILURE == result.getStatus()) {
-        takeScreenshot(driver);
+        takeScreenshot(driver, "Страница корзины открыта");
             }
         if (driver != null) {
             driver.quit();
