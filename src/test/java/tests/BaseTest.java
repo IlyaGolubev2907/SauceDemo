@@ -39,6 +39,7 @@ public void setup(@Optional("chrome") String browser, ITestContext ITestContext)
     options.addArguments("--disable-notifications");
     options.addArguments("--disable-popup-blocking");
     options.addArguments("--disable-infobars");
+    options.addArguments("--headless");
     if (browser.equalsIgnoreCase("chrome")) {
         driver = new ChromeDriver(options);
     } else if (browser.equalsIgnoreCase("firefox")) {
@@ -55,9 +56,11 @@ public void setup(@Optional("chrome") String browser, ITestContext ITestContext)
 }
 @AfterMethod(alwaysRun = true)
 public void tearDown(ITestResult result) {
-    if (ITestResult.FAILURE == result.getStatus()){
+    if (ITestResult.FAILURE == result.getStatus()) {
         takeScreenshot(driver);
+            }
+        if (driver != null) {
+            driver.quit();
+            }
+        }
     }
-    driver.quit();
-    }
-}
