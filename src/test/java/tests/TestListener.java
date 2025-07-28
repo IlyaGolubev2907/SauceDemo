@@ -7,7 +7,7 @@ import org.testng.ITestResult;
 
 import java.util.concurrent.TimeUnit;
 
-import static tests.AllureUtils.takeScreenshot;
+
 
 
 public class TestListener implements ITestListener {
@@ -28,7 +28,6 @@ public class TestListener implements ITestListener {
         System.out.printf("======================================== FAILED TEST %s Duration: %ss ========================================%n", iTestResult.getName(),
                 getExecutionTime(iTestResult));
         WebDriver driver = (WebDriver) iTestResult.getTestContext().getAttribute("driver");
-        takeScreenshot(driver, "Страница корзины открыта");
     }
 
     @Override
