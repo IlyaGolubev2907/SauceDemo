@@ -51,10 +51,4 @@ public class CartPage extends BasePage {
         takeScreenshot(driver, "Товар удален из корзины");
         return this;
     }
-
-    // Старый метод (оставлен для совместимости)
-    @Deprecated
-    public boolean isCartEmpty() {
-        return driver.findElements(CART_ITEM).isEmpty();
-    }
 }
