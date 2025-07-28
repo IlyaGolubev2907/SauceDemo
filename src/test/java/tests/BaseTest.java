@@ -54,9 +54,6 @@ public void setup(@Optional("chrome") String browser, ITestContext ITestContext)
 }
 @AfterMethod(alwaysRun = true)
 public void tearDown(ITestResult result) {
-//    if (ITestResult.FAILURE == result.getStatus()) {
-//        takeScreenshot(driver, "Страница корзины открыта");
-            //}
         if (driver != null) {
             driver.quit();
             }

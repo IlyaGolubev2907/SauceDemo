@@ -24,28 +24,24 @@ public class ProductsPage extends BasePage {
     @Step("Открытие страницы каталога")
     public ProductsPage open() {
         driver.get(BASE_URL + "inventory.html");
-        takeScreenshot(driver, "Страница каталога открыта");
         return this;
     }
 
     @Step("Проверка отображения страницы каталога")
     public ProductsPage verifyPageOpened() {
         Assert.assertTrue(driver.findElement(TITLE).isDisplayed(), "Страница каталога не открыта");
-        takeScreenshot(driver, "Страница каталога отображена");
         return this;
     }
 
     @Step("Добавление товара в корзину по индексу {index}")
     public ProductsPage addItemToCart(int index) {
         getItems().get(index).click();
-        takeScreenshot(driver, "Товар добавлен в корзину");
         return this;
     }
 
     @Step("Удаление товара из корзины по индексу {index}")
     public ProductsPage removeItemFromCart(int index) {
         getRemoveButtons().get(index).click();
-        takeScreenshot(driver, "Товар удален из корзины");
         return this;
     }
 
@@ -59,7 +55,6 @@ public class ProductsPage extends BasePage {
     @Step("Нажатие на кнопку корзины")
     public CartPage clickCartButton() {
         driver.findElement(CART_BUTTON).click();
-        takeScreenshot(driver, "Переход в корзину");
         return new CartPage(driver);
     }
 
